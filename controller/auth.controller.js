@@ -1,7 +1,8 @@
-const httpStatus = require('http-status');
-const sendResponse = require('../helpers/response');
+import httpStatus from 'http-status';
+import sendResponse from '../helpers/response';
 
-const { UserQuery } = require('../queries');
+// eslint-disable-next-line import/named
+import { UserQuery } from '../queries';
 
 export const register = async (req, res, next) => {
   const { email, name, password } = req.body;

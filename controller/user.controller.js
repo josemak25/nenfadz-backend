@@ -1,9 +1,10 @@
-const httpStatus = require('http-status');
-const sendResponse = require('../helpers/response');
+import httpStatus from 'http-status';
+import sendResponse from '../helpers/response';
 
-const { UserQuery } = require('../queries');
+// eslint-disable-next-line import/named
+import { UserQuery } from '../queries';
 
-export const getAll = async (req, res, next) => {
+export const getAll = async (_req, res, next) => {
   try {
     const users = await UserQuery.findAll({});
 
@@ -13,7 +14,7 @@ export const getAll = async (req, res, next) => {
   }
 };
 
-export const comment = async (req, res, next) => {
+export const comment = async (_req, res, next) => {
   try {
     const users = await UserQuery.findAll({});
 
