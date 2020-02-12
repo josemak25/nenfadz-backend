@@ -26,6 +26,12 @@ const UserSchema = new Schema(
       maxlength: 11,
       default: null
     },
+    user_type: {
+      type: String,
+      enum: ['admin', 'student'],
+      default: 'student',
+      required: true
+    },
     password: {
       type: String,
       required: true
