@@ -1,7 +1,6 @@
 /**
  *  start database connection
  */
-import '@babel/polyfill';
 import './database';
 
 import bodyParser from 'body-parser';

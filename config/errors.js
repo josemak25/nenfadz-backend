@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import { isCelebrate } from 'celebrate';
 
-import { env } from './index';
+import config from './index';
 
 import APIError from '../helpers/APIError';
 
@@ -12,7 +12,8 @@ import JoiErrorFormatter from '../helpers/JoiErrorFormatter';
  * @public
  */
 
-export const handler = (err, _req, res) => {
+// eslint-disable-next-line no-unused-vars
+export const handler = (err, _req, res, _next) => {
   const response = {
     statusCode: err.status,
     message: err.message || httpStatus[err.status],
@@ -21,7 +22,7 @@ export const handler = (err, _req, res) => {
     stack: err.stack
   };
 
-  if (env !== 'development') delete response.stack;
+  if (config.env !== 'development') delete response.stack;
 
   res.status(err.status);
   res.json(response);
@@ -31,19 +32,18 @@ export const handler = (err, _req, res) => {
  * If error is not an instanceOf APIError, convert it.
  * @public
  */
-export const converter = (err, req, res) => {
-  let convertedError = err;
 
+// eslint-disable-next-line no-unused-vars
+export const converter = (err, req, res, _next) => {
+  let convertedError = err;
   if (isCelebrate(err)) {
     convertedError = new APIError({
       message: 'Invalid fields',
-      status: httpStatus.BAD_REQUEST, // unaccessible entity
+      status: httpStatus.BAD_REQUEST,
       errors: JoiErrorFormatter(err.joi.details) || {},
       payload: {}
     });
-  }
-
-  if (!(err instanceof APIError)) {
+  } else if (!(err instanceof APIError)) {
     convertedError = new APIError({
       message: err.message,
       status: err.status,
@@ -60,7 +60,6 @@ export const converter = (err, req, res) => {
  * @param {} req
  * @param {*} res
  */
-
 export const errorHandler = (err, _req, _res, next) => {
   if (err) {
     const tokenError = new APIError('Unauthorized', err.status, true);
@@ -73,7 +72,6 @@ export const errorHandler = (err, _req, _res, next) => {
  * Catch 404 and forward to error handler
  * @public
  */
-
 export const notFound = (req, res) => {
   const err = new APIError({
     message: 'Not found',
