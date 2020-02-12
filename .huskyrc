@@ -1,6 +1,6 @@
 {
     "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "pre-push": "yarn test:coverage --bail --findRelatedTests"
+      "pre-commit": "pretty-quick --staged && yarn test",
+      "pre-push": "pretty-quick --staged && yarn test:coverage"
     }
 }

@@ -9,7 +9,8 @@
     "test": "cross-env NODE_ENV=test && jest --runInBand --verbose --detectOpenHandles --forceExit",
     "test:watch": "yarn test --watch",
     "test:coverage": "yarn test --coverage",
-    "report-coverage": "coveralls < ./coverage/lcov.info"
+    "report-coverage": "coveralls < ./coverage/lcov.info",
+    "postinstall": "rm -rf .git/hooks/pre-push && node node_modules/husky/bin/install.js && rm -rf .git/hooks/pre-commit"
   },
   "repository": {
     "type": "git",
