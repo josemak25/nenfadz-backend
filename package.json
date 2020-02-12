@@ -69,11 +69,6 @@
     "pretty-quick": "^2.0.1",
     "supertest": "^4.0.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "engines": {
     "node": "12.x"
   }
