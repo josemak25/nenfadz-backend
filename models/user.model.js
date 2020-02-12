@@ -17,7 +17,7 @@ const UserSchema = new Schema(
     },
     gender: {
       type: String,
-      enum: ['male', 'female'],
+      enum: ['male', 'female', null],
       default: null
     },
     phone: {
@@ -26,7 +26,7 @@ const UserSchema = new Schema(
       maxlength: 11,
       default: null
     },
-    user_type: {
+    userType: {
       type: String,
       enum: ['admin', 'student'],
       default: 'student',
@@ -63,4 +63,4 @@ UserSchema.methods = {
  */
 UserSchema.statics = {};
 
-export default model('user', UserSchema);
+module.exports = model('user', UserSchema);

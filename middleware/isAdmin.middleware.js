@@ -1,11 +1,10 @@
-/* eslint-disable camelcase */
 import httpStatus from 'http-status';
 import sendResponse from '../helpers/response';
 
 const IsAdmin = (req, res, next) => {
-  const { user_type } = req.token;
+  const { userType } = req.token;
 
-  if (user_type !== 'admin') {
+  if (userType !== 'admin') {
     return res.json(
       sendResponse(
         httpStatus.UNAUTHORIZED,
