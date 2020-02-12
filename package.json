@@ -4,8 +4,8 @@
   "description": "Nenfadz Technologies",
   "main": "index.js",
   "scripts": {
-    "development": "cross-env NODE_ENV=development nodemon api.js",
-    "production": "cross-env NODE_ENV=production node api.js",
+    "development": "cross-env NODE_ENV=development nodemon --exec babel-node app.js",
+    "production": "cross-env NODE_ENV=production babel-node api.js",
     "test": "cross-env NODE_ENV=test && jest --runInBand --verbose --detectOpenHandles --forceExit",
     "test:watch": "yarn test --watch",
     "test:coverage": "yarn test --coverage",
@@ -25,28 +25,34 @@
   },
   "homepage": "https://github.com/josemak25/nenfadz-backend#readme",
   "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
     "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
     "celebrate": "^11.0.1",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
+    "debug": "^4.1.1",
     "dotenv": "^8.2.0",
+    "eslint-plugin-jest": "^23.7.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "http-status": "^1.4.2",
     "jest": "^25.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.11",
+    "morgan": "^1.9.1",
     "path-parser": "^6.1.0",
     "util": "^0.12.1"
   },
   "jest": {
-    "globals": {
-      "__DEV__": true
-    },
     "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "/node_modules/"
+    "setupFilesAfterEnv": [
+      "./test_scripts/jest.setup.js"
     ]
   },
   "devDependencies": {
@@ -57,7 +63,6 @@
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.2",
-    "morgan": "^1.9.1",
     "nodemailer": "^6.4.2",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
