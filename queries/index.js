@@ -12,9 +12,6 @@ const AllModels = fs.readdirSync(directoryPath, (err, files) => {
 
 // get working models from working directory
 const builderObject = AllModels.reduce((accumulator, file) => {
-  // if file is test folder then skip
-  if (file === '__tests__') return accumulator;
-
   // get every model from the model folder
   const Model = require(`../models/${file}`);
 

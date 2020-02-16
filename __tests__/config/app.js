@@ -9,9 +9,9 @@ import cors from 'cors';
 /**
  * server configuration
  */
-import config from '../config';
-import routes from '../routes';
-import error from '../config/errors';
+import config from '../../config';
+import routes from '../../routes';
+import * as error from '../../config/errors';
 
 /**
  * express application
@@ -40,6 +40,7 @@ app.use(error.notFound);
 app.use(error.handler);
 
 // opens a port if the environment is not test
-server.listen(config.port, () => {});
+// eslint-disable-next-line no-console
+server.listen(config.port, () => console.log('tested server started'));
 
 export default app;

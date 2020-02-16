@@ -1,7 +1,7 @@
 /* eslint-disable no-return-await */
 import '@babel/polyfill';
 import mongoose from 'mongoose';
-import config from '../config';
+import config from '../../config';
 
 // plugin global promise in mongoose
 mongoose.Promise = global.Promise;
