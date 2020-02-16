@@ -13,7 +13,7 @@ const AllModels = fs.readdirSync(directoryPath, (err, files) => {
 // get working models from working directory
 const builderObject = AllModels.reduce((accumulator, file) => {
   // get every model from the model folder
-  const Model = require(`../models/${file}`);
+  const Model = require(`../models/${file}`).default;
 
   // get model name
   const [modelName] = file.split('.');
